@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix | StreamFlix</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">NETFLIX</div>
+
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#movies">Movies</a>
+            <a href="#trending">Trending</a>
+            <a href="#mylist">My List</a>
+        </nav>
+
+        <div class="nav-right">
+            <input type="text" id="searchInput"
+                   placeholder="Search movies...">
+            <button onclick="searchMovies()">Search</button>
+            <span class="profile">A</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="tagline">NETFLIX ORIGINAL</p>
+            <p id="backendStatus" class="backend-status">
+    Checking server connection...
+</p>
+            <h1>STRANGER<br>THINGS</h1>
+            <p class="description">
+                When a young boy disappears, a small town
+                discovers a mystery involving secret experiments,
+                supernatural forces and one strange little girl.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="play-btn" onclick="playMovie()">
+                    ▶ Play
+                </button>
+                <button class="info-btn" onclick="showFeaturedInfo()">
+                    ⓘ More Info
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="movie-section" id="trending">
+            <h2>Trending Now</h2>
+            <div class="movie-container" id="movieContainer"></div>
+        </section>
+
+        <section class="movie-section" id="movies">
+            <h2>Popular on Netflix</h2>
+            <div class="movie-container" id="popularContainer"></div>
+        </section>
+
+        <section class="movie-section" id="mylist">
+            <h2>My List</h2>
+            <div class="movie-container" id="myListContainer"></div>
+        </section>
+    </main>
+
+    <div class="modal" id="movieModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">✕</button>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <button class="play-btn" onclick="playMovie()">▶ Play</button>
+        </div>
+    </div>
+
+    <footer>
+        <h2>NETFLIX</h2>
+        <p>Created as a DevOps College Project</p>
+        <p>© 2026 Netflix Clone Project</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
