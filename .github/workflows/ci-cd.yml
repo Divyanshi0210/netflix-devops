@@ -1,0 +1,67 @@
+
+name: Netflix DevOps CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  backend-test:
+    name: Backend Testing
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Check Backend
+        run: |
+          cd backend
+          node --check server.js
+
+  frontend-build:
+    name: Frontend Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Check Frontend Files
+        run: |
+          test -f frontend/index.html
+          test -f frontend/css/style.css
+          test -f frontend/js/script.js
+
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    needs:
+      - backend-test
+      - frontend-build
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Backend Image
+        run: docker build -t netflix-backend ./backend
+
+      - name: Build Frontend Image
+        run: docker build -t netflix-frontend ./frontend
